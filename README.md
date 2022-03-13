@@ -1,6 +1,6 @@
 # mqtt-email-srv
 
-This repo offers a script to have a local mail server available and post a mqtt message from an incoming mail from CCTV.
+This repo offers a script to have a local mail server available for cctv and post a mqtt message for an incoming mail from cctv.
 
 ## Use-Cases:
 
