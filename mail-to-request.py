@@ -22,7 +22,7 @@ ipc_string = "QWxhcm0gRXZlbnQ6IE1vdGlvbiBEZXRlY3Rpb24NCkFsYXJtIElucHV0IENoYW5uZW
 gs_string = "EVENT TYPE: Motion Detected"
 sender = "name"
 
-TOKEN = "a1b7c2d4ef6g7h8i9jk"
+#TOKEN = "abcdefgh"
 #BASE_URL = "https://192.168.178.86/api/values/"
 #URL_CAM1 = "url1_cam"
 #URL_CAM2 = "url2_cam"
@@ -84,10 +84,8 @@ class MyMessageHandler(AsyncMessage):
         return '250 Message accepted for delivery'
 
 async def amain(loop):
-
     cont = MyController(MyMessageHandler(), hostname='', port=8025)
     cont.start()
-
 
 if __name__ == '__main__':
 #    logging.basicConfig(level=logging.DEBUG)
