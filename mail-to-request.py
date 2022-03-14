@@ -2,7 +2,7 @@
 # install aiosmtpd with:
 # pip install aiosmtpd
 # generate key for TLS:
-# openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj '/CN=localhost'
+# openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 999 -nodes -subj '/CN=localhost'
 
 import asyncio
 import logging
