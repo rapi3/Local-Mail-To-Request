@@ -60,9 +60,9 @@ we need to search for first line: "EVENT TYPE: Motion Detected"<br>
 when string it is found script will publish message <b>Alarm</b> in camera named topic: <b>IOT/cctv/XXXX</b><br>
 sender-name it is taken from cctv email:
 ```
-From: XXXX@myhome.local
+From: XXXX@mycctv.local
 ```
-so you can have any nr of cameras sending messages to that email box and each camera will have his own topic.
+so you can have any nr of cameras sending messages and each camera will have his own topic.
 
 <b>You need to add in python code your MQTT server-ip, user & password.</b><br>
 Modify the script as appropriate.<br>
