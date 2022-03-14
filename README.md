@@ -78,7 +78,7 @@ If you want to use an unsecure, self generated one for your localhost (recommend
 ## Config of the mail client (e.g. your IP Camera)
 
 This python code can run on Raspberry Pi. Simply add the IP address of your Raspberry Pi and the port usede in the Python code (*here 8025*) to you camera. You can use any email adresses as it does not matter - the mail stays local in your network.<br>
-However first part of camera email address is important as it is used to identify the camera and post MQTT alert in that camera topic for each camer, so try to use something  like: <b> IPC01</b>@mycctv.local, <b> IPC02</b>@mycctv.local... <b> IPC99</b>@mycctv.local<br>
+However first part of camera email address is important as it is used to identify the camera and post MQTT alert in that camera topic for each camera, so try to use something  like: <b> IPC01</b>@mycctv.local, <b> IPC02</b>@mycctv.local... <b> IPC99</b>@mycctv.local<br>
 The script now will check only if the domain name match <b>@mycctv.local</b> - <i>this can be modified by you in the python code</i>).<br>
 If you want to use proper authentication, python code need to be changed: set user name and password and uncomment the part in the python to check whether it matches...
 
