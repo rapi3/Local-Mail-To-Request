@@ -17,17 +17,11 @@ from aiosmtpd.handlers import AsyncMessage
 from aiosmtpd.smtp import SMTP as Server, syntax
 from aiosmtpd.smtp import AuthResult
 
+# define here string to search for camera Alarm
 ezip_string = "QWxhcm0gRXZlbnQ6IE1vdGlvbiBEZXRlY3Rpb24gU3RhcnQ"
 ipc_string = "QWxhcm0gRXZlbnQ6IE1vdGlvbiBEZXRlY3Rpb24NCkFsYXJtIElucHV0IENoYW5uZWw"
 gs_string = "EVENT TYPE: Motion Detected"
 sender = "name"
-
-#TOKEN = "abcdefgh"
-#BASE_URL = "https://192.168.178.86/api/values/"
-#URL_CAM1 = "url1_cam"
-#URL_CAM2 = "url2_cam"
-#IP_CAM1 = '192.168.100.89'
-#IP_CAM2 = '192.168.100.99'
 
 class MyController(Controller):
     @staticmethod
@@ -41,6 +35,7 @@ class MyController(Controller):
         # # Or you can get fancy and use a full-fledged database to perform
         # # a query :-)
         # if auth_db.get(username) == password
+# For debug:        
 #        print("authenticator function called")
         return AuthResult(success=True)
 
@@ -50,7 +45,8 @@ class MyController(Controller):
         return Server(self.handler, tls_context=context, authenticator=self.authenticator_func)
 
 class MyMessageHandler(AsyncMessage):
-# accept only email for your domain: mycctv.local
+    
+# change to accept only emails for your domain here it is defined for: mycctv.local
     async def handle_RCPT(self, server, session, envelope, address, rcpt_options):
         if not address.endswith('@mycctv.local'):
             return '550 not relaying to that domain'
@@ -58,6 +54,7 @@ class MyMessageHandler(AsyncMessage):
         return '250 OK'
 
     async def handle_DATA(self, server, session, envelope):
+# For debug to check email sent by camera:        
 #        print('.....Message from %s' % envelope.mail_from)
 #        print('.....Message for %s' % envelope.rcpt_tos)
 #        print('.....Message data:\n')
@@ -66,19 +63,14 @@ class MyMessageHandler(AsyncMessage):
 #        print()
 #        print('.....End of message')
 
-# disabled
-#        if session.peer[0] == IP_CAM1:
-#            url = BASE_URL + URL_CAM1
-#        elif session.peer[0] == IP_CAM2:
-#            url = BASE_URL + URL_CAM2
-#        requests.put(url=url, json={"value": 1}, params={"token": TOKEN}, verify=False)
-
-# added
+# search in email body for camera Alarm string defined up:
         if ezip_string in envelope.content.decode('utf8', errors='replace') or ipc_string in envelope.content.decode('utf8', errors='replace') or gs_string in envelope.content.decode('utf8', errors='replace'):
+# find sender name from cctv email name:
           sender = re.search(r".+?(?=\@)", envelope.mail_from)
           sender = sender.group()
+# execute MQTT for camera:
           publish.single('IOT/cctv/{}'.format(sender), "Alarm", hostname="your.mqtt.server.ip", client_id="mqtt-email", auth = {'username':"your_mqtt_user", 'password':"your_mqtt_pass"})
-# For debug
+# For debug:
 #          print('.....Debug sender: ', sender)
 #          print('.....Debug EXECUTE MQTT !')
         return '250 Message accepted for delivery'
@@ -88,6 +80,7 @@ async def amain(loop):
     cont.start()
 
 if __name__ == '__main__':
+# For debug:    
 #    logging.basicConfig(level=logging.DEBUG)
     loop = asyncio.get_event_loop()
     loop.create_task(amain(loop=loop))
