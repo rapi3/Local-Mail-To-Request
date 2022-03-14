@@ -1,6 +1,6 @@
 # mqtt-email-srv
-Python script that it will run as a local email server for CCTV, pasrse emails sent by Dahua CCTV EZIP & IPC camera and send MQTT alarm.<br>
-Another variant of script that it will run under Postfix it is available here: https://github.com/rapi3/mqtt-email<br>
+Python code that it will run as a local email server for CCTV, pasrse emails sent by Dahua CCTV EZIP & IPC camera and send MQTT alarm.<br>
+Another variant of code that it will run under Postfix it is available here: https://github.com/rapi3/mqtt-email<br>
 ```
 q: why ?
 a: Because for Dahua EZIP camera don't exist until now an integration for IOT and you can't integrate in HA (untill now).
@@ -71,14 +71,16 @@ Modify the script as appropriate.<br>
 Simply run:
 > pip install aiosmtpd
 
-As the script runs in TLS authentication mode (as most cameras need it), you need to parse a openssl *cert.pem* and *key.pem* file. If you want to use an unsecure, self generated one for your localhost (recommended for this purpose in local network), execute the following command in Terminal in your working directory (not in Python Console, in the proper Terminal!):
-> openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 999 -nodes -subj '/CN=localhost'
+As the python code runs in TLS authentication mode (as most cameras need it), you need to parse a openssl *cert.pem* and *key.pem* file.
+If you want to use an unsecure, self generated one for your localhost (recommended for this purpose in local network), execute the following command in Terminal in your working directory (not in Python Console, in the proper Terminal!):
+> openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 9989 -nodes -subj '/CN=localhost'
 
 ## Config of the mail client (e.g. your IP Camera)
 
-This python script can run on Raspberry Pi. Simply add the IP address of your Raspberry Pi and the port of the Python script (*here 8025*) to you camera. You can use any dummy domain mail adresses as it does not matter - the mail stays local in your network.<br>
-However first part of camera email address it is important as it is used to identify the camera and post MQTT alert in that camera topic, so try to use something  like: <b> IPC01</b>@mycctv.local, <b> IPC02</b>@mycctv.local... <b> IPC99</b>@mycctv.local<br>
-If you want to use proper authentication ( in the script will check only the domain name match <b>@mycctv.local</b>), script will need to be changed: set user name and password and uncomment the part in the python script to check whether it matches.
+This python code can run on Raspberry Pi. Simply add the IP address of your Raspberry Pi and the port usede in the Python code (*here 8025*) to you camera. You can use any email adresses as it does not matter - the mail stays local in your network.<br>
+However first part of camera email address is important as it is used to identify the camera and post MQTT alert in that camera topic for each camer, so try to use something  like: <b> IPC01</b>@mycctv.local, <b> IPC02</b>@mycctv.local... <b> IPC99</b>@mycctv.local<br>
+The script now will check only if the domain name match <b>@mycctv.local</b> - <i>this can be modified by you in the python code</i>).<br>
+If you want to use proper authentication, python code need to be changed: set user name and password and uncomment the part in the python to check whether it matches...
 
 ![image](https://user-images.githubusercontent.com/60820820/157892840-d9d2045c-9fda-4b00-ad12-ed7580f92a9b.png)
 
