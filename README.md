@@ -1,5 +1,5 @@
 # mqtt-email-srv
-Python script that it will run as a local email server for CCTV, pasrse emails send by Dahua EZIP & IPC CCTV camera and send MQTT alarm.<br>
+Python script that it will run as a local email server for CCTV, pasrse emails sent by Dahua EZIP & IPC CCTV camera and send MQTT alarm.<br>
 
 ```
 q: why ?
