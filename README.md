@@ -76,7 +76,9 @@ As the script runs in TLS authentication mode (as most cameras need it), you nee
 
 ## Config of the mail client (e.g. your IP Camera)
 
-I am running the python script on a Raspberry Pi. Simply add the IP address of your Raspberry Pi and the port of the Python script (*here 8025*) to you camera. You can use any dummy mail adresses as it does not matter - the mail stays local in your network. If you want to use proper authentication (I just use a dummy one), set user name and password and uncomment the part in the python script to check whether it matches.
+This python script can run on Raspberry Pi. Simply add the IP address of your Raspberry Pi and the port of the Python script (*here 8025*) to you camera. You can use any dummy domain mail adresses as it does not matter - the mail stays local in your network.<br>
+However first part of camera email address it is important as it is used to identify the camera and post MQTT alert in that camera topic, so try to use something  like: <b> IPC01</b>@mycctv.local, <b> IPC02</b>@mycctv.local... <b> IPC99</b>@mycctv.local<br>
+If you want to use proper authentication (Here it use a dummy one), set user name and password and uncomment the part in the python script to check whether it matches.
 
 ![image](https://user-images.githubusercontent.com/60820820/157892840-d9d2045c-9fda-4b00-ad12-ed7580f92a9b.png)
 
