@@ -1,5 +1,5 @@
 # mqtt-email-srv
-Python code that it will run as a local email server for CCTV, pasrse emails sent by Dahua CCTV EZIP & IPC camera and send MQTT alarm.<br>
+Python code that it will run as a local email server for CCTV, and translate emails sent by Dahua CCTV EZIP & IPC camera in MQTT message.<br>
 Another variant of code that it will run under Postfix it is available here: https://github.com/rapi3/mqtt-email<br>
 ```
 q: why ?
